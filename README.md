@@ -1,2 +1,2 @@
-## PROJECT-2
-# This project is built using flask framework
+# PROJECT-2
+## This is a static version of the webapp on the main branch
