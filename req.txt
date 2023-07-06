@@ -20,7 +20,6 @@ importlib-metadata==4.11.3
 itsdangerous==2.1.2
 Jinja2==3.1.1
 MarkupSafe==2.1.1
-mysqlclient @ file:///C:/Users/Shaikh/Downloads/shop.com-master/mysqlclient-1.4.6-cp37-cp37m-win_amd64.whl#sha256=683269b350813b3d593e290e0d565b0de6bcd7f8b3c5cec3025260b3dfcd3b57
 passlib==1.7.4
 pipreqs==0.4.13
 pycparser==2.21
