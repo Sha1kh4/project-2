@@ -1,0 +1,46 @@
+{% extends "layout.html" %} {% block body %}
+<div class="container">
+
+    <div class="flex flex-col">
+        <div class="overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="inline-block min-w-full align-middle">
+                <div class="overflow-hidden ">
+                    <table class="text-left w-ful divide-y  ">
+                        <thead class="bg-gray-100 top-0 sticky dark:bg-gray-700">
+                            <tr>
+                                <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">id</th>
+                                <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">background</th>
+                                <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">link to watch</th>
+                                <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">Title</th>
+                                <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">link to info</th>
+                                <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">info</th>
+                            </tr>
+                        </thead>
+                        <tbody class=" divide-y divide-gray-200 dark:bg-opacity-0 dark:divide-opacity-700">
+
+                            {% for content in content %}
+                            <tr class="hover:bg-opacity-0 dark:hover:bg-opacity-40">
+
+                                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ content.no }}</td>
+                                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <a href="{{ content.bgimg }}"><img src="{{ content.bgimg }}" alt="{{ content.title }}"></a>
+                                </td>
+                                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <a href="{{ content.href1 }}">{{ content.href1 [0:20]}}...</a>
+                                </td>
+                                <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-blue-600">{{ content.title }}</td>
+                                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"><a href="{{ content.href2 }}">{{ content.href2 [0:20]}}...</a></td>
+                                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <a href="/dash/{{content.title}}">
+                        {{ content.info[0:20]}}...</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
