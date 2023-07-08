@@ -35,7 +35,7 @@ class user(db.Model):
 @app.route("/")
 def index():
     content = contents.query.all()
-
+    
     return render_template("index.html", title="Index", content=content)
 
 
@@ -52,12 +52,13 @@ def login():
             query= "SELECT * FROM user WHERE username ='{}'AND password ='{}'".format(username,password)
             cur.execute(query) 
             result=cur.fetchall()
-            current = result[-1]
-            lavel = current[-1]
-            session['lavel']=lavel 
+
             if len(result)==0:
                 flash('Invalid Credentials. Please try again.')
             else:
+                current = result[-1]
+                lavel = current[-1]
+                session['lavel']=lavel 
                 session['user']=username
                 return redirect(url_for("index"))
         return render_template("login.html", title="Login",error=error)
@@ -70,7 +71,7 @@ def signup():
         email = request.form.get('Email')
         username = request.form.get('username')
         password = request.form.get('password')
-        entry = user(email=email, username=username, password=password)
+        entry = user(email=email, username=username, password=password,lavel=1)
         db.session.add(entry)
         db.session.commit()
     return render_template("signup.html", title="Sign up")
@@ -120,11 +121,23 @@ def before_request():
     if 'user' in session:
         g.user = session['user']
 
-@app.route("/dash/<string:user_slug>", methods=['GET'])
-def info(user_slug):
-    if 'user' in session:
-        content = contents.query.filter_by(title=user_slug).first()
-        return render_template('info.html',content=content )
+@app.route("/edit/<string:user_slug>", methods=['POST','GET'])
+def edit(user_slug):
+    if 'user' in session: 
+            if session['lavel'] == 1 or 2 :
+                content = contents.query.filter_by(title=user_slug).first()
+                if(request.method=='POST'):
+                    content.title  = request.form.get('title')
+                    content.bgimg = request.form.get('bgimg')
+                    content.href1 = request.form.get('href1')
+                    content.href2 = request.form.get('href2')
+                    content.info = request.form.get('info')
+                    try:
+                        db.session.commit()
+                        return redirect('/dash')
+                    except:
+                        return "there was an error"
+            return render_template('edit.html',title="info",content=content)
     return redirect(url_for('index'))
     
 @app.route('/logout')
@@ -135,3 +148,23 @@ def logout():
 @app.route("/sources")
 def Sources():  
     return render_template("Sources.html", title="Source")
+
+
+@app.route("/dash/<string:user_slug>", methods=['GET'])
+def info(user_slug):    
+    if 'user' in session:
+        content = contents.query.filter_by(title=user_slug).first()
+        return render_template('info.html',content=content )
+    return redirect(url_for('index'))
+
+
+@app.route("/<string:user_slug>/delete")
+def delete(user_slug):
+    if 'user' in session:
+        if session['lavel'] == 1 or 2 :
+            print (session['lavel'])
+            contents.query.filter_by(title=user_slug).delete()
+            db.session.commit()
+            return redirect(url_for('dash'))
+    else:
+        return redirect(url_for('index'))
