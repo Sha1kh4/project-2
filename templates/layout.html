@@ -1,4 +1,5 @@
 <head>
+    <link rel="icon" href="{{ url_for('static', filename='logo.jpg') }}">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -28,6 +29,11 @@
                         <li class="p-5 xl:p-8">
                             <a href="{{url_for('Sources')}}">
                                 <span>Sources</span>
+                            </a>
+                        </li>
+                        <li class="p-5 xl:p-8">
+                            <a href="{{url_for('form')}}">
+                                <span>Add info</span>
                             </a>
                         </li>
 

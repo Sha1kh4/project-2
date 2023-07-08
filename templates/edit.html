@@ -1,0 +1,25 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="flex justify-center items-center w-screen h-screen container mx-auto my-4 px-4 lg:px-20">
+    <div class="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
+        <form name="contents" method="post">
+            <div class="flex">
+                <h1 class="font-bold uppercase text-5xl">Edit for {{content.title}} <br /> </h1>
+            </div>
+            <div class="grid grid-cols-1 gap-5 md:grid-cols-1 mt-5">
+                <label class="font-bold uppercase w-full  ">title:<input class="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" type="text" value="{{content.title}}" name="title" /></label>
+                <label class="font-bold uppercase w-full  ">background-image link:<input class="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" type="url" value="{{content.bgimg}}" name="bgimg" /></label>
+                <label class="font-bold uppercase w-full  ">link to streaming site:<input class="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" type="url" value="{{content.href1}}" name="href1" /></label>
+                <label class="font-bold uppercase w-full  ">link to info provide:<input class="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" type="url" value="{{content.href2}}" name="href2" /></label>
+            </div>
+            <div class="my-4">
+                <label class="font-bold uppercase w-full  ">info:<textarea name="info" class="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline">{{content.info}}</textarea></label>
+            </div>
+            <div class="my-2 w-1/2 lg:w-1/4">
+                <input type="submit" class="uppercase text-sm font-bold tracking-wide bg-blue-900 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline" value="update">
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
