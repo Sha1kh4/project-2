@@ -49,6 +49,24 @@ INSERT INTO `contents` (`no`, `bgimg`, `href1`, `title`, `href2`, `info`) VALUES
 (6, 'https://cdn.otakutale.com/wp-content/uploads/2019/11/New-Boku-no-Hero-Academia-Hero-Rising-Visual-Trailer-Revealed-500x400.jpg', 'https://www.crunchyroll.com/series/GYNV9DP2R/my-hero-academia-dubs', 'My Hero Academia', 'https://www.imdb.com/title/tt5626028', 'A superhero-loving boy without any powers is determined to enroll in a prestigious hero academy and learn what it really means to be a hero.');
 
 -- --------------------------------------------------------
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `contents`
+--
+ALTER TABLE `contents`
+  ADD PRIMARY KEY (`no`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `contents`
+--
+ALTER TABLE `contents`
+  MODIFY `no` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Table structure for table `user`
@@ -70,30 +88,12 @@ INSERT INTO `user` (`id`, `email`, `username`, `password`) VALUES
 (1, 'admin@anime.com', 'admin', '12345');
 
 --
--- Indexes for dumped tables
---
-
---
--- Indexes for table `contents`
---
-ALTER TABLE `contents`
-  ADD PRIMARY KEY (`no`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `contents`
---
-ALTER TABLE `contents`
-  MODIFY `no` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `user`
