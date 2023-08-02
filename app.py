@@ -7,13 +7,13 @@ app = Flask(__name__)
 
 app.secret_key = "1234"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://sql6633062:dfzDXqmMwK@sql6.freemysqlhosting.net/sql6633062' 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://freedb_Shaikh:vkbhG4D3!vyF9GG@sql.freedb.tech/freedb_flask4' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-app.config['MYSQL_HOST'] = 'sql6.freemysqlhosting.net'
-app.config['MYSQL_USER'] = 'sql6633062'
-app.config['MYSQL_PASSWORD'] = 'dfzDXqmMwK'
-app.config['MYSQL_DB'] = 'sql6633062'
+app.config['MYSQL_HOST'] = 'sql.freedb.tech'
+app.config['MYSQL_USER'] = 'freedb_Shaikh'
+app.config['MYSQL_PASSWORD'] = 'vkbhG4D3!vyF9GG'
+app.config['MYSQL_DB'] = 'freedb_flask4'
 mysql = MySQL(app)
  
 class contents(db.Model):
