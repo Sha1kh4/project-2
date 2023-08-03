@@ -1,13 +1,13 @@
 from flask import Flask, session, request, g, render_template, redirect, url_for,flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_mysqldb import MySQL
-app = Flask(__name__)
 # import sqlite3  
 # con = sqlite3.connect("employee.db")  
+app = Flask(__name__)
 
 app.secret_key = "1234"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://freedb_Shaikh:vkbhG4D3!vyF9GG@sql.freedb.tech/freedb_flask4' 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://freedb_Shaikh:vkbhG4D3!vyF9GG@sql.freedb.tech/freedb_flask4?use_pure=True' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 app.config['MYSQL_HOST'] = 'sql.freedb.tech'
@@ -16,6 +16,7 @@ app.config['MYSQL_PASSWORD'] = 'vkbhG4D3!vyF9GG'
 app.config['MYSQL_DB'] = 'freedb_flask4'
 mysql = MySQL(app)
  
+
 class contents(db.Model):
     no = db.Column(db.Integer, primary_key=True)
     bgimg = db.Column(db.String(255), nullable=False)
