@@ -1,6 +1,8 @@
 from flask import Flask, session, request, g, render_template, redirect, url_for,flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_mysqldb import MySQL
+import mysql.connector as sql
+
 # import sqlite3  
 # con = sqlite3.connect("employee.db")  
 app = Flask(__name__)
