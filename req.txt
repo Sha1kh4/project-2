@@ -28,7 +28,6 @@ passlib==1.7.4
 pipreqs==0.4.13
 pycparser==2.21
 PyMySQL==1.1.0
-python-dotenv==1.0.0
 requests==2.31.0
 six==1.16.0
 sql==2022.4.0
