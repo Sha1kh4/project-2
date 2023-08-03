@@ -37,8 +37,9 @@ class user(db.Model):
     
 @app.route("/")
 def index():
+
     content = contents.query.all()
-    
+
     return render_template("index.html", title="Personal project 2", content=content)
 
 
@@ -93,10 +94,9 @@ def dash():
 @app.route("/admin")
 def admin():
     if 'user' in session:
-        if session['lavel'] == 2:
-            users = user.query.all()
-            print(users)
-            return render_template("admin.html", title="Admin Panel",users=users)
+        users = user.query.all()
+        print(users)
+        return render_template("admin.html", title="Admin Panel",users=users)
     return redirect(url_for("login"))
 
 
