@@ -94,9 +94,10 @@ def dash():
 @app.route("/admin")
 def admin():
     if 'user' in session:
-        users = user.query.all()
-        print(users)
-        return render_template("admin.html", title="Admin Panel",users=users)
+        if session['lavel'] == 2:
+            users = user.query.all()
+            print(users)
+            return render_template("admin.html", title="Admin Panel",users=users)
     return redirect(url_for("login"))
 
 
