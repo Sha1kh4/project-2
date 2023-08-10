@@ -1,4 +1,3 @@
-# project-2
 # To recreate the project on locally
 ### Step 1 : Clone the repository 
 ```
