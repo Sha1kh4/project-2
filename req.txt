@@ -18,6 +18,7 @@ itsdangerous==2.1.2
 Jinja2==3.1.1
 MarkupSafe==2.1.1
 mysql==0.0.3
+mysql-connector-repackaged==0.3.1
 mysql-connector-python==8.1.0
 pycparser==2.21
 six==1.16.0
