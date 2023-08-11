@@ -9,13 +9,13 @@ app = Flask(__name__)
 
 app.secret_key = "1234"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://freedb_Shaikh:vkbhG4D3!vyF9GG@sql.freedb.tech/freedb_flask4?use_pure=True' 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://2lqsuqbf7hon1uuzyns2:pscale_pw_qnDMRZmnGZhVW0Zp4TyGODP61SNJRXON1cbqzcBISPc@aws.connect.psdb.cloud/flask?use_pure=True' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-app.config['MYSQL_HOST'] = 'sql.freedb.tech'
-app.config['MYSQL_USER'] = 'freedb_Shaikh'
-app.config['MYSQL_PASSWORD'] = 'vkbhG4D3!vyF9GG'
-app.config['MYSQL_DB'] = 'freedb_flask4'
+app.config['MYSQL_HOST'] = 'aws.connect.psdb.cloud'
+app.config['MYSQL_USER'] = '2lqsuqbf7hon1uuzyns2'
+app.config['MYSQL_PASSWORD'] = 'pscale_pw_qnDMRZmnGZhVW0Zp4TyGODP61SNJRXON1cbqzcBISPc'
+app.config['MYSQL_DB'] = 'flask'
 mysql = MySQL(app)
  
 
@@ -84,7 +84,6 @@ def signup():
 def dash():
     if 'user' in session:
         if session['lavel'] == 1 or 2:
-            print(session['lavel'])
             content = contents.query.all()
 
             return render_template("dash.html", title="dashboard",content=content)
@@ -96,7 +95,6 @@ def admin():
     if 'user' in session:
         if session['lavel'] == 2:
             users = user.query.all()
-            print(users)
             return render_template("admin.html", title="Admin Panel",users=users)
     return redirect(url_for("login"))
 
@@ -166,7 +164,6 @@ def info(user_slug):
 def delete(user_slug):
     if 'user' in session:
         if session['lavel'] == 1 or 2 :
-            print (session['lavel'])
             contents.query.filter_by(title=user_slug).delete()
             db.session.commit()
             return redirect(url_for('dash'))
