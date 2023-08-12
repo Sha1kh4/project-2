@@ -9,12 +9,12 @@ app = Flask(__name__)
 
 app.secret_key = "1234"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://2lqsuqbf7hon1uuzyns2:pscale_pw_qnDMRZmnGZhVW0Zp4TyGODP61SNJRXON1cbqzcBISPc@aws.connect.psdb.cloud/flask?use_pure=True' 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://g66apvqmy0gdcw1wayj3:pscale_pw_R0EuKipzWxoLfnleWve1sMfvfFBfvEy93BjAFunVLgz@aws.connect.psdb.cloud/flask?use_pure=True' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 app.config['MYSQL_HOST'] = 'aws.connect.psdb.cloud'
-app.config['MYSQL_USER'] = '2lqsuqbf7hon1uuzyns2'
-app.config['MYSQL_PASSWORD'] = 'pscale_pw_qnDMRZmnGZhVW0Zp4TyGODP61SNJRXON1cbqzcBISPc'
+app.config['MYSQL_USER'] = 'g66apvqmy0gdcw1wayj3'
+app.config['MYSQL_PASSWORD'] = 'pscale_pw_R0EuKipzWxoLfnleWve1sMfvfFBfvEy93BjAFunVLgz'
 app.config['MYSQL_DB'] = 'flask'
 mysql = MySQL(app)
  
