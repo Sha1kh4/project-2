@@ -2,6 +2,9 @@ from flask import Flask, session, request, g, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_mysqldb import MySQL
 import mysql.connector as sql
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # import sqlite3  
 # con = sqlite3.connect("employee.db")  
@@ -9,12 +12,13 @@ app = Flask(__name__)
 
 app.secret_key = "1234"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://lyhrcxbr1cgmcnbpqg8m:pscale_pw_4wmxYFhCn8JbAfTXm75uYsE7pNvQfIVnGl7KL0KuQXB@aws.connect.psdb.cloud/flask?use_pure=True' 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://'+os.getenv("DB_USERNAME")+':'+os.getenv("DB_PASSWORD")+'@'+os.getenv("DB_HOST")+'/'+os.getenv("DB_NAME")+'?use_pure=True' 
 db = SQLAlchemy(app)
-app.config['MYSQL_HOST'] = 'aws.connect.psdb.cloud'
-app.config['MYSQL_USER'] = 'lyhrcxbr1cgmcnbpqg8m'
-app.config['MYSQL_PASSWORD'] = 'pscale_pw_4wmxYFhCn8JbAfTXm75uYsE7pNvQfIVnGl7KL0KuQXB'
-app.config['MYSQL_DB'] = 'flask'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['MYSQL_HOST'] = os.getenv("DB_HOST")
+app.config['MYSQL_USER'] = os.getenv("DB_USERNAME")
+app.config['MYSQL_PASSWORD'] = os.getenv("DB_PASSWORD")
+app.config['MYSQL_DB'] = os.getenv("DB_NAME")
 mysql = MySQL(app)
  
 
