@@ -1,5 +1,6 @@
 from flask import Flask, session, request, g, render_template, redirect, url_for,flash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import select
 from flask_mysqldb import MySQL
 import mysql.connector as sql
 import os
@@ -9,18 +10,12 @@ load_dotenv()
 # import sqlite3  
 # con = sqlite3.connect("employee.db")  
 app = Flask(__name__)
-
 app.secret_key = "1234"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://'+os.getenv("DB_USERNAME")+':'+os.getenv("DB_PASSWORD")+'@'+os.getenv("DB_HOST")+':3306'+'/'+os.getenv("DB_NAME")+'?use_pure=True'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://'+os.getenv("DB_USERNAME")+':'+os.getenv("DB_PASSWORD")+'@'+os.getenv("DB_HOST")+':3306'+'/'+os.getenv("DB_NAME")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-app.config['MYSQL_HOST'] = os.getenv("DB_HOST")
-app.config['MYSQL_USER'] = os.getenv("DB_USERNAME")
-app.config['MYSQL_PASSWORD'] = os.getenv("DB_PASSWORD")
-app.config['MYSQL_DB'] = os.getenv("DB_NAME")
-mysql = MySQL(app)
  
 
 class contents(db.Model):
@@ -50,23 +45,19 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if 'user' not in session:
-        cur = mysql.connection.cursor()
+        cur = db.session.connection()
         error = None
 
         if request.method == 'POST':
             session.pop('user',None)
             username = request.form.get("username")
             password = request.form.get("password")
-            query= "SELECT * FROM user WHERE username ='{}'AND password ='{}'".format(username,password)
-            cur.execute(query) 
-            result=cur.fetchall()
-
-            if len(result)==0:
+            result=user.query.filter_by(username=username).first()
+            
+            if password!=result.password:
                 flash('Invalid Credentials. Please try again.')
             else:
-                current = result[-1]
-                lavel = current[-1]
-                session['lavel']=lavel 
+                session['lavel']=result.lavel 
                 session['user']=username
                 return redirect(url_for("index"))
         return render_template("login.html", title="Login",error=error)
