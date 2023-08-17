@@ -12,14 +12,10 @@ app = Flask(__name__)
 
 app.secret_key = "1234"
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://'+os.getenv("DB_USERNAME")+':'+os.getenv("DB_PASSWORD")+'@'+os.getenv("DB_HOST")+':3306'+'/'+os.getenv("DB_NAME")+'ssl={"rejectUnauthorized":true}'
-
-app.config['SQLALCHEMY_DATABASE_URI'] = (f"mysql+mysqlconnector://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@"
-f"{os.getenv('DB_HOST')}:3306/{os.getenv('DB_NAME')}?ssl={'rejectUnauthorized': true}"
-)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://'+os.getenv("DB_USERNAME")+':'+os.getenv("DB_PASSWORD")+'@'+os.getenv("DB_HOST")+':3306'+'/'+os.getenv("DB_NAME")+'?use_pure=True'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MYSQL_HOST'] = os.getenv("DB_HOST")
 app.config['MYSQL_USER'] = os.getenv("DB_USERNAME")
 app.config['MYSQL_PASSWORD'] = os.getenv("DB_PASSWORD")
