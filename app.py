@@ -39,7 +39,7 @@ def index():
 
     content = contents.query.all()
 
-    return render_template("index.html", title="Personal project 2", content=content)
+    return render_template("index.html", title="AnimeInsights", content=content)
 
 
 @app.route('/login', methods=['GET', 'POST'])
